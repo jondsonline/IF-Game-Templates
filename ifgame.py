@@ -106,7 +106,7 @@ def do_drop():
 
 def do_look():
     if parsed.noun == "NA":
-        pc.location.show_long_desc()
+        pc.location.is_visited = False
         return
 
     item_found = False
