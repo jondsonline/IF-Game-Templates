@@ -48,6 +48,7 @@ otherroom = Room('otherroom')
 otherroom.title = "STRANGE NEW ROOM"
 otherroom.desc = "This is a strange, unfamiliar room. Exciting!\n" \
                  "There is a ghost here."
+otherroom.inventory.add(ghost)
 otherroom.add_exit(east='startroom')
 room_list.append(otherroom)
 
