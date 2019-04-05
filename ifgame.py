@@ -138,6 +138,9 @@ def do_inventory():
     else:
         pc.inventory.display()
 
+def do_say():
+    print("Saying something")
+
 
 def do_quit():
     print("Exiting the game...")
@@ -175,9 +178,10 @@ verbs.add(get=do_take, take=do_take)
 verbs.add(drop=do_drop)
 verbs.add(look=do_look, x=do_look, examine=do_look)
 verbs.add(i=do_inventory, inventory=do_inventory)
+verbs.add(say=do_say)
 verbs.add(verbs=do_verbs)
 verbs.add(help=do_help)
-verbs.add(quit=do_quit)
+verbs.add(q=do_quit, quit=do_quit)
 
 # used by the parser to indicate no action/incorrect verb
 verbs.add(NA=do_nothing)
@@ -195,6 +199,7 @@ nouns.add(south="south", s="south", west="west", w="west")
 
 nouns.add(book="book", textbook="book")
 nouns.add(ghost="ghost", spirit="ghost")
+
 
 # default parser response for no noun given
 nouns.add(NA="NA")

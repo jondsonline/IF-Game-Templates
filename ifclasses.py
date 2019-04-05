@@ -117,6 +117,34 @@ class Room:
         print()
 
 
+class Topic:
+    """Conversation topics for use with NPCs.
+    Requires topic keyword and NPC id.
+    """
+    def __init__(self, responder, topic):
+
+        if isinstance(responder, NPC):
+            self.responder = responder.id
+            self.name = topic
+            self.response = "An interesting topic."
+        else:
+            raise Exception("Variable is not an NPC responder")
+
+
+class ConversationDict:
+    def __init__(self):
+        self.dict = {}
+
+    def add_topic(self, topic):
+        if not isinstance(topic, Topic):
+            raise Exception("Variable is not a Topic. Unable to add to ConversationDict")
+        else:
+            self.dict.update({topic.responder:{topic.name:topic.response}})
+
+
+
+
+
 class Player:
     """A Player class, containing some very
     basic information such a location, score,

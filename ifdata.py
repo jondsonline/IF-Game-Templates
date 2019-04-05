@@ -26,6 +26,12 @@ ghost.title = 'Friendly ghost'              # technically, this title is never u
 ghost.desc = "A smiling, friendly ghost."   # must be there for response to 'LOOK' command
 ghost.desc_in_room = "A smiling, friendly ghost hovers in the room."  # automatically listed in room desc
 
+ghost_greeting = Topic(ghost, 'hello')
+ghost_greeting.response = "The ghost says, \"Why, hello there!\""
+
+conversations = ConversationDict()
+conversations.add_topic(ghost_greeting)
+
 
 # ------
 # ROOMS
