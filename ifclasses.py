@@ -19,6 +19,15 @@ class Item:
         return self
 
 
+class NPC(Item):
+    def __init__(self, id):
+        super().__init__(id)
+        self.is_listed = False
+        self.is_takeable = False
+        self.described = True
+        self.desc_in_room = "There is a non-player character here"
+
+
 class Inventory(list):
     """The Inventory class should contain a list
     of item_id values from the Item class.
@@ -85,9 +94,12 @@ class Room:
         if len(self.inventory) > 0:
             list_items = False
             for item in self.inventory:
+                if isinstance(item, NPC):
+                    if item.described:
+                        print(item.desc_in_room)
+
                 if item.is_listed:
                     list_items = True
-                    break
 
             if list_items:
                 print("OBJECTS HERE:")
@@ -176,6 +188,7 @@ class Nouns:
         else:
             return self.noun_dict[choice]
 
+
 class ParsedCommand():
     """The verb/noun combination used
     by the parser"""
@@ -190,4 +203,3 @@ class ParsedCommand():
         self.verb = "NA"
         self.noun = "NA"
         self.routine = ''
-

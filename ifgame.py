@@ -73,10 +73,13 @@ def do_take():
 
     for item in pc.location.inventory:
         if parsed.noun == item.id:
-            pc.location.inventory.drop(item)
-            pc.inventory.add(item)
             item_there = True
-            print("Taken.")
+            if item.is_takeable:
+                pc.location.inventory.drop(item)
+                pc.inventory.add(item)
+                print("Taken.")
+            else:
+                print("You can't take that.")
 
     if item_there == False:
         print("I dont see a(n)",parsed.noun,"here.")
@@ -191,6 +194,7 @@ nouns.add(north="north", n="north", east="east", e="east")
 nouns.add(south="south", s="south", west="west", w="west")
 
 nouns.add(book="book", textbook="book")
+nouns.add(ghost="ghost", spirit="ghost")
 
 # default parser response for no noun given
 nouns.add(NA="NA")

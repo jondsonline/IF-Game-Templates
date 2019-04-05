@@ -21,11 +21,11 @@ book.title = 'A Python textbook'
 book.desc = "An interesting Python textbook to study from."
 
 # A ghost, an "item" not listed in room inventory, or takeable
-ghost = Item('ghost')
+ghost = NPC('ghost')
 ghost.title = 'Friendly ghost'              # technically, this title is never used by room desc
 ghost.desc = "A smiling, friendly ghost."   # must be there for response to 'LOOK' command
-ghost.is_listed = False                     # do not list item in ANY inventory list
-ghost.is_takeable = False                   # cannot be taken (don't forget this!!)
+ghost.desc_in_room = "A smiling, friendly ghost hovers in the room."  # automatically listed in room desc
+
 
 # ------
 # ROOMS
@@ -46,8 +46,7 @@ room_list.append(startroom)
 
 otherroom = Room('otherroom')
 otherroom.title = "STRANGE NEW ROOM"
-otherroom.desc = "This is a strange, unfamiliar room. Exciting!\n" \
-                 "There is a ghost here."
+otherroom.desc = "This is a strange, unfamiliar room. Exciting!"
 otherroom.inventory.add(ghost)
 otherroom.add_exit(east='startroom')
 room_list.append(otherroom)
