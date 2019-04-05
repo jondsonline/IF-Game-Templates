@@ -142,9 +142,6 @@ class ConversationDict:
             self.dict.update({topic.responder:{topic.name:topic.response}})
 
 
-
-
-
 class Player:
     """A Player class, containing some very
     basic information such a location, score,

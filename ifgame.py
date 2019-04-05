@@ -186,24 +186,6 @@ verbs.add(q=do_quit, quit=do_quit)
 # used by the parser to indicate no action/incorrect verb
 verbs.add(NA=do_nothing)
 
-# --------------
-# DEFINED NOUNS
-# --------------
-
-# set up dictionary of nouns/item_id's
-nouns = Nouns()
-
-# Must include all of the following for the parser
-nouns.add(north="north", n="north", east="east", e="east")
-nouns.add(south="south", s="south", west="west", w="west")
-
-nouns.add(book="book", textbook="book")
-nouns.add(ghost="ghost", spirit="ghost")
-
-
-# default parser response for no noun given
-nouns.add(NA="NA")
-
 # -----------------
 # PARSER ROUTINES
 # -----------------

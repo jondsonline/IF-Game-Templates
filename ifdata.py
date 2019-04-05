@@ -11,6 +11,21 @@ class Flags():
 # initialize flags
 flag = Flags()
 
+# --------------
+# DEFINED NOUNS
+# --------------
+
+# set up dictionary of nouns/item_id's
+nouns = Nouns()
+
+# Must include all of the following for the parser
+nouns.add(north="north", n="north", east="east", e="east")
+nouns.add(south="south", s="south", west="west", w="west")
+
+# default parser response for no noun given
+nouns.add(NA="NA")
+
+
 # ------
 # ITEMS
 # ------
@@ -19,15 +34,23 @@ flag = Flags()
 book = Item('book')
 book.title = 'A Python textbook'
 book.desc = "An interesting Python textbook to study from."
+nouns.add(book="book", textbook="book")
+
+# -----
+# NPCS
+# -----
+
 
 # A ghost, an "item" not listed in room inventory, or takeable
 ghost = NPC('ghost')
 ghost.title = 'Friendly ghost'              # technically, this title is never used by room desc
 ghost.desc = "A smiling, friendly ghost."   # must be there for response to 'LOOK' command
 ghost.desc_in_room = "A smiling, friendly ghost hovers in the room."  # automatically listed in room desc
+nouns.add(ghost="ghost", spirit="ghost")
 
 ghost_greeting = Topic(ghost, 'hello')
 ghost_greeting.response = "The ghost says, \"Why, hello there!\""
+nouns.add(hello="hello")
 
 conversations = ConversationDict()
 conversations.add_topic(ghost_greeting)
