@@ -137,7 +137,7 @@ class ConversationDict:
 
     def add_topic(self, topic):
         if not isinstance(topic, Topic):
-            raise Exception("Variable is not a Topic. Unable to add to ConversationDict")
+            raise Exception("Variable {} is not a Topic. Unable to add to ConversationDict".format(topic))
         else:
             self.dict.update({topic.responder:{topic.name:topic.response}})
 

@@ -40,6 +40,8 @@ nouns.add(book="book", textbook="book")
 # NPCS
 # -----
 
+conversations = ConversationDict()
+
 
 # A ghost, an "item" not listed in room inventory, or takeable
 ghost = NPC('ghost')
@@ -50,11 +52,11 @@ nouns.add(ghost="ghost", spirit="ghost")
 
 ghost_greeting = Topic(ghost, 'hello')
 ghost_greeting.response = "The ghost says, \"Why, hello there!\""
-nouns.add(hello="hello")
-
-conversations = ConversationDict()
 conversations.add_topic(ghost_greeting)
 
+ghost_ignorance = Topic(ghost, 'NA')        # 'NA" is already defined as a noun by default
+ghost_ignorance.response = "The ghost looks confused."
+conversations.add_topic(ghost_ignorance)
 
 # ------
 # ROOMS

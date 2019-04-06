@@ -138,8 +138,30 @@ def do_inventory():
     else:
         pc.inventory.display()
 
+
 def do_say():
-    print("Saying something")
+    if parsed.noun == "NA":
+        print("What do you want to say?")
+    else:
+        npc_in_room = False
+        npc_id = ""
+
+        for item in pc.location.inventory:
+            if isinstance(item, NPC):
+                npc_in_room = True
+                npc_id = item.id
+
+        if npc_in_room:
+            topic_found = False
+            for topic_key, topic_response in conversations.dict[npc_id].items():
+                if parsed.noun == topic_key:
+                    print(topic_response)
+                    topic_found = True
+
+            if topic_found == False:
+                print(conversations.dict[npc_id]['NA'])    # must be define for each NPC in data file
+        else:
+            print("There is no one around to talk to.")
 
 
 def do_quit():
@@ -156,7 +178,8 @@ def do_help():
 
 def do_verbs():
     print("The following verbs are recognized by the game:\n"
-          "GO, GET, TAKE, DROP, LOOK, EXAMINE, INVENTORY, HELP, VERBS, and QUIT\n"
+          "GO, GET, TAKE, DROP, LOOK, EXAMINE, INVENTORY, HELP, SAY, SPEAK, VERBS,\n"
+          "and QUIT.\n"
           "\nYou may enter the first letter of a direction by itself to move in\n"
           "that direction. You may also enter X for LOOK or EXAMINE, or I for\n"
           "INVENTORY.")
@@ -178,7 +201,7 @@ verbs.add(get=do_take, take=do_take)
 verbs.add(drop=do_drop)
 verbs.add(look=do_look, x=do_look, examine=do_look)
 verbs.add(i=do_inventory, inventory=do_inventory)
-verbs.add(say=do_say)
+verbs.add(say=do_say, speak=do_say)
 verbs.add(verbs=do_verbs)
 verbs.add(help=do_help)
 verbs.add(q=do_quit, quit=do_quit)
@@ -244,7 +267,7 @@ def parser_match_noun(word):
     temp_noun = nouns.match_noun(word)
 
     # if noun is ERR (error, not found) return error message and return NA (noun unknown)
-    if temp_noun == "ERR":
+    if temp_noun == "ERR" and parsed.verb != 'say':
         print ("I do not know what a(n)", word, "is.")
         parsed.verb = 'NA'   # be sure to select do_nothing as a verb routine
         return
