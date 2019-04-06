@@ -19,13 +19,24 @@ class Item:
         return self
 
 
+class Decoration(Item):
+    def __init__(self, id):
+        super().__init__(id)
+        self.title = id
+        self.is_listed = False
+        self.is_takeable = False
+        self.desc = "Just a bit of decoration."
+
+
 class NPC(Item):
     def __init__(self, id):
         super().__init__(id)
+        self.title = id
         self.is_listed = False
         self.is_takeable = False
         self.described = True
-        self.desc_in_room = "There is a non-player character here"
+        self.desc = "Just an average NPC."
+        self.desc_in_room = "There is a non-player character here."
 
 
 class Inventory(list):

@@ -66,11 +66,15 @@ room_list = []
 
 # ---- STARTING ROOM ----
 
+tile_floor = Decoration("tilefloor")
+tile_floor.desc = "The tile floor looks like an oversized checkerboard."
+nouns.add(floor="tilefloor", tile="tilefloor", tiles="tilefloor")
+
 startroom = Room('startroom')
 startroom.title = "HOME SWEET HOME"
-startroom.desc = "You are in your comfortable, familiar home room."
+startroom.desc = "You are in your comfortable, familiar home room. There is a tile floor."
 startroom.add_exit(west='otherroom')
-startroom.inventory.add(book)
+startroom.inventory.add(book, tile_floor)
 room_list.append(startroom)
 
 # ---- OTHER ROOM ----
